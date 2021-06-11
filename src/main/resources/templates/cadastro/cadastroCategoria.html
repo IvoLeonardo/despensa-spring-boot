@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head th:replace="~{base :: head}">
+		<meta charset="UTF-8">
+		
+	</head>
+	<body>
+		<header th:replace="~{base :: header}"></header>
+		
+		<main class="container">
+			<section>
+				<form action="salvarCategoria" method="post" th:object="${categoriaObj}">
+					<div class="row mb-3">
+					
+						<input type="hidden" name="id" th:field="*{id}">
+						
+						<label class="form-label">Categoria do produto</label>
+						<input class="form-control" name="nome" th:field="*{nome}">
+					</div>
+					
+					<input class="btn btn-secondary mb-3" type="submit" value="salvar">
+				</form>
+				
+				<p><a href="/listaCategorias">Listar categorias</a></p>
+			</section>
+			
+			 <section class="w-50 mt-5">
+				 
+			 	<form class="col-sm-12 d-flex me-3 mb-3" action="pesquisaNomeCategoria" method="post">
+			      <input class="form-control me-2" type="search" name="nomePesquisa" placeholder="Pesquisar..." aria-label="Search">
+			      <button class="btn btn-secondary" type="submit">Buscar</button>
+			    </form>
+			    
+			 </section>
+			
+			<table class="table">
+				<tr>
+					<th>Cód</th><th>Categoria</th><th>Editar</th><th>Excluir</th>
+				</tr>
+				
+				<tr th:each = "c : ${categorias}">
+					<td th:text = "${c.id}"></td>
+					<td th:text = "${c.nome}"></td>
+					<td><a th:href = "@{/editarCategoria/{categoriaId}(categoriaId=${c.id})}">editar</a></td>
+					<td><a th:href = "@{/excuirCategoria/{categoriaId}(categoriaId=${c.id})}">excluir</a></td>
+				</tr>
+			
+			</table>
+		</main>
+	
+	</body>
+</html>

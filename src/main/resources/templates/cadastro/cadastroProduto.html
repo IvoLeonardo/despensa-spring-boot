@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head th:replace="~{base :: head}">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+	
+		<header th:replace="~{base :: header}"></header>
+		<div class="container">
+		
+			<section class="card-body w-50 mt-5"> 
+				<form action="salvarProduto" method="post" th:object="${produtoObj}"> <!-- field significa campo em inglês-->
+				
+					<input type="hidden" name="id" th:field="*{id}">
+					
+					<div class="row">
+						<div class="col-sm-6 mb-3">
+							<label class="form-label">Produto</label>
+							<input class="form-control" type="text" name="nome" th:field="*{nome}"> <!-- field significa campo em inglês-->
+						</div>
+						<div class="col-sm-6 mb-3">
+							<label class="form-label">Descrição</label>
+							<input class="form-control" type="text" name="descricao" th:field="*{descricao}"> <!-- field significa campo em inglês-->
+						</div>
+					</div>
+					
+					<div class="col-sm-12 mb-3">
+						<label class="form-label" for="categoria">Categoria</label>
+						<select class="form-control"id="categoria" th:field="*{categoria}">
+							<option value=""  id="categoria" selected> --[Selecione]--</option> <!-- LEMBRAR de incluir o atributo value=" " (vazio)-->
+							<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.nome}"></option>
+						</select>
+					</div>
+					
+					<div class="mt-3">
+						<input class="btn btn-secondary" type="submit" value="Salvar">
+					</div>
+				</form>
+			</section>
+			
+			<p><a href="/listaProdutos">Listar produtos</a></p>
+			
+			 <section class="w-50 mt-5">
+				 
+			 	<form class="col-sm-12 d-flex me-3" action="pesquisarNome" method="post">
+			      <input class="form-control me-2" type="search" name="nomePesquisa" placeholder="Pesquisar..." aria-label="Search">
+			      <button class="btn btn-secondary" type="submit">Buscar</button>
+			    </form>
+			    
+			 </section>
+			
+			<section class="mt-5">
+				<table class="table">
+					
+					<tr>
+						<th>Id</th> <th>Produto</th> <th>Descrição</th> <th>Categoria</th> <th>Editar</th> <th>Excluir</th>
+					</tr>
+					<tr th:each = "produto : ${produtos}">
+					
+						<td th:text = "${produto.id}"></td>
+						<td th:text = "${produto.nome}"></td>
+						<td th:text = "${produto.descricao}"></td>
+						<td th:text = "${produto.categoria}"></td>
+						<td><a th:href="@{/editarProduto/{prodId}(prodId=${produto.id})}">Editar</a></td>
+						<td><a th:href="@{/excluirProduto/{prodId}(prodId=${produto.id})}">Excluir</a></td>
+					</tr>
+				</table>
+			</section>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+.card-posicao-imagem{
+	object-fit:cover;
+	/*object-position: 0 80%;*/
+	height:230px;
+	width: 100%;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-largura{
+	max-width: 18rem;
+}

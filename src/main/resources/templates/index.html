@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head th:replace="~{base :: head}">
+	
+		<meta charset="UTF-8">
+	</head>
+	<body>
+	
+		<header th:replace="~{base :: header}"></header>
+	
+		<main class="container-fluid">
+			
+			<section class="container">
+				<div class="row justify-content-between">
+					<article class="card card-largura p-0 m-3 col-12 col-sm-3">
+					  <a href="/cadastraProduto">
+					  	<img src="../img/produto-add.png" class="card-img-top card-posicao-imagem" alt="...">
+					  </a>
+					  <div class="card-body">
+					    <p class="card-text">Produtos</p>
+					  </div>
+					</article>
+					
+					<article class="card card-largura p-0 m-3 col-12 col-sm-3">
+					  <a href="/cadastroFornecedor">
+					  	<img src="../img/supermercado.jpg" class="card-img-top card-posicao-imagem" alt="...">
+					  </a>
+					  <div class="card-body">
+					    <p class="card-text">Supermercados</p>
+					  </div>
+					</article>
+					
+					<article class="card card-largura p-0 m-3 col-12 col-sm-3">
+						<a href="/compras">
+					  		<img src="../img/compras.png" class="card-img-top card-posicao-imagem" alt="...">
+					  	</a>
+						<div class="card-body">
+					    <p class="card-text">Compras</p>
+					  </div>
+					</article>
+					
+					<article class="card card-largura p-0 m-3 col-12 col-sm-3">
+					  <a href="/categoriaInicio">
+					  	<img src="../img/categoria.jpg" class="card-img-top card-posicao-imagem" alt="...">
+					  </a>
+					  <div class="card-body">
+					    <p class="card-text">Categorias</p>
+					  </div>
+					</article>
+					
+					<article class="card card-largura p-0 m-3 col-12 col-sm-3">
+					  <a href="/cadastroUsuario">
+					  	<img src="../img/usuarios.png" class="card-img-top card-posicao-imagem" alt="...">
+					  </a>
+					  <div class="card-body">
+					    <p class="card-text">Usuários</p>
+					  </div>
+					</article>
+				</div>
+			</section>
+		</main>
+		<footer class="bg-secondary p-3">
+			<p class="text-light text-center p-0">IL-SC Todos os direitos reservados - &copy </p>
+		</footer>
+	</body>
+</html>

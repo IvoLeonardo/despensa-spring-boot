@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head th:replace="~{base :: head}">
+		<meta charset="UTF-8">
+		
+	</head>
+	<body>
+		<header th:replace="~{base :: header}"></header>
+		
+		<main class="container">
+			<section>
+				<form action="salvarFornecedor" method="post" th:object="${fornecedorObj}">
+					<div class="row mb-3">
+						
+						<input type="hidden" name="id" th:field="*{id}">
+						
+						<label class="form-label">Nome Fornecedor</label>
+						<input class="form-control" name="nomeEmpresa" th:field="*{nomeEmpresa}">
+					</div>
+					
+					<input class="btn btn-secondary mb-3" type="submit" value="salvar">
+				</form>
+				
+				<section class="w-50 mt-5">
+				 	<form class="col-sm-12 d-flex me-3" action="pesquisarFornecedor" method="post">
+				      <input class="form-control me-2" type="search" name="nomePesquisa" placeholder="Pesquisar..." aria-label="Search">
+				      <button class="btn btn-secondary" type="submit">Buscar</button>
+				    </form>
+				</section>
+				
+				<p><a href="/listaFornecedores">Listar fornecedores</a></p>
+			</section>
+			
+			<table class="table">
+				<tr> 
+					<th>Id</th> <th>Mercado</th> <th>Editar</th> <th>Excluir</th>
+				</tr>
+				
+				<tr th:each = "fornecedor : ${fornecedores}">
+					<td th:text="${fornecedor.id}"></td>
+					<td th:text="${fornecedor.nomeEmpresa}"></td>
+					<td><a th:href="@{/editarFornecedor/{fornecedorId}(fornecedorId=${fornecedor.id})}">editar</a></td>
+					<td><a th:href="@{/removerFornecedor/{fornecedorId}(fornecedorId=${fornecedor.id})}">excluir</a></td>
+				</tr>
+			</table>
+		</main>
+	
+	</body>
+</html>

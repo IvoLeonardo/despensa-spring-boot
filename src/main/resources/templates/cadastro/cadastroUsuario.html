@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head th:replace="~{base :: head}">
+		<meta charset="UTF-8">
+		
+	</head>
+	<body>
+		<header th:replace="~{base :: header}"></header>
+		
+		<div class="container">
+			
+			<div>
+				<form action="salvarUsuario" method="post" th:object="${usuarioObj}">
+					
+					<input type="hidden" th:field="*{id}">
+					
+					<div>
+						<label class="form-label">Nome</label>
+						<input class="form-control" name="nomeUsuario" th:field="*{nomeUsuario}">
+					</div>
+					
+					<div>
+						<label class="form-label">Login</label>
+						<input class="form-control" name="login" th:field="*{login}">
+					</div>
+					
+					<div>
+						<label class="form-label">senha</label>
+						<input class="form-control" type="password" name="senha" th:field="*{senha}">
+					</div>
+					
+					<div class="mt-3">
+						<input class="btn btn-secondary" type="submit" value="Salvar">
+					</div>
+				
+				</form>
+			</div> <!-- Fim div do form -->
+			
+			<p><a href="/listaUsuarios">Listar</a></p>
+			<div>
+			
+				<table class="table">
+					<tr>
+						<th>Id</th>
+						<th>Nome</th>
+						<th>Login</th>
+						<th>Editar</th>
+						<th>Excluir</th>
+					</tr>
+					
+					<tr th:each="usuario : ${usuarios}">
+						<td th:text="${usuario.id}"></td>
+						<td th:text="${usuario.nomeUsuario}"></td>
+						<td th:text="${usuario.login}"></td>
+						
+						<td><a th:href="@{/editarUsuario/{idUsuario}(idUsuario=${usuario.id})}">editar</a></td>
+						<td><a th:href="@{/removeUsuario/{idUsuario}(idUsuario=${usuario.id})}">excluir</a></td>
+					</tr>
+				</table>
+			</div> <!-- fim div da table -->
+		
+		</div> <!-- Fim class container -->
+	</body>
+</html>
